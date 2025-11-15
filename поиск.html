@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Поиск</title>
+    <script>
+        // База данных ссылок в виде объекта
+        const searchIndex = {
+            "мрамор": "/мрамор.html",
+            "золото": "articles/золото.html", 
+            "пирит": "articles/пирит.html",
+            "яшма": "articles/яшма.html"
+            // Добавляй новые статьи сюда
+        };
+
+        function search() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const resultDiv = document.getElementById('result');
+            
+            if (searchIndex[query]) {
+                resultDiv.innerHTML = `Найдено: <a href="${searchIndex[query]}">${query}</a>`;
+            } else {
+                resultDiv.innerHTML = "Ничего не найдено. Попробуй 'мрамор', 'золото'...";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Поиск по базе знаний</h1>
+    
+    <input type="text" id="searchInput" placeholder="Введите название...">
+    <button onclick="search()">Найти</button>
+    
+    <div id="result"></div>
+
+    <p><small>Доступные запросы: мрамор, золото, пирит, яшма</small></p>
+    <a href="мой сайт.html">назад на главную</a>
+</body>
+</html>
