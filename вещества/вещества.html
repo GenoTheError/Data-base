@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вещества - База Знаний</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .category-section {
+            margin: 25px 0;
+        }
+        
+        .category-title {
+            color: #90cdf4;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #2d3748;
+        }
+        
+        .subcategory {
+            margin: 20px 0 15px 15px;
+            color: #63b3ed;
+            font-size: 1.1em;
+        }
+        
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin: 10px 0 20px 20px;
+        }
+        
+        .item-card {
+            background: #2d3748;
+            border: 1px solid #4a5568;
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        
+        .item-card:hover {
+            border-color: #63b3ed;
+            background: #3c4a5c;
+        }
+        
+        .item-card a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+        }
+        
+        .search-compact {
+            background: #1a202c;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #2d3748;
+            margin: 25px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Вещества</h1>
+    <p>Изучение материалов, минералов и элементов</p>
+
+    <!-- Поиск по веществам -->
+    <div class="search-compact">
+        <h3 style="color: #90cdf4; margin-bottom: 15px; text-align: center;">🔍 Поиск по веществам</h3>
+        <input type="text" id="substanceSearch" placeholder="Введите название вещества...">
+        <button onclick="searchSubstances()">Найти</button>
+        <div id="substanceResult" style="margin-top: 15px;"></div>
+    </div>
+
+    <!-- Природные вещества -->
+    <div class="category-section">
+        <div class="category-title">Природные вещества</div>
+        
+        <div class="subcategory">Твёрдые тела</div>
+        
+        <div class="subcategory" style="margin-left: 20px;">/Горные породы</div>
+        <div class="items-grid">
+            <div class="item-card"><a href="мрамор.html">Мрамор</a></div>
+        </div>
+        
+        <div class="subcategory" style="margin-left: 20px;">/Металлы</div>
+        <div class="items-grid">
+            <div class="item-card"><a href="вещества/золото.html">Золото</a></div>
+            <div class="item-card"><a href="вещества/висмут.html">Висмут</a></div>
+        </div>
+        
+        <div class="subcategory" style="margin-left: 20px;">/Минералы</div>
+        <div class="items-grid">
+            <div class="item-card"><a href="вещества/пирит.html">Пирит</a></div>
+            <div class="item-card"><a href="вещества/кварц.html">Кварц</a></div>
+            <div class="item-card"><a href="вещества/аметист.html">Аметист</a></div>
+        </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px;">
+        <a href="../index.html">← Назад на главную</a>
+    </p>
+
+    <script>
+        const substanceIndex = {
+            "золото": "вещества/золото.html",
+            "висмут": "вещества/висмут.html", 
+            "пирит": "вещества/пирит.html",
+            "кварц": "вещества/кварц.html",
+            "аметист": "вещества/аметист.html",
+            "мрамор": "мрамор.html"
+        };
+
+        function searchSubstances() {
+            const query = document.getElementById('substanceSearch').value.toLowerCase();
+            const resultDiv = document.getElementById('substanceResult');
+            
+            if (substanceIndex[query]) {
+                resultDiv.innerHTML = `Найдено: <a href="${substanceIndex[query]}" style="color: #63b3ed; font-weight: 600;">${query}</a>`;
+            } else {
+                resultDiv.innerHTML = "Вещество не найдено. Попробуйте 'золото', 'кварц'...";
+            }
+        }
+    </script>
+</body>
+</html>
