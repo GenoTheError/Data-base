@@ -52,8 +52,13 @@
         font-size: 26px;
         margin: 30px 0;
         padding: 20px;
-        background: ##b9d5d0;
+        background: ##40698d;
         border-radius: 10px;
+    }
+    
+    .search-item {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
     }
     
     small {
@@ -100,12 +105,36 @@
             const query = document.getElementById('searchInput').value.toLowerCase();
             const resultDiv = document.getElementById('result');
             
-            if (searchIndex[query]) {
-                resultDiv.innerHTML = `Найдено: <a href="${searchIndex[query]}">${query}</a>`;
-            } else {
-                resultDiv.innerHTML = "Ничего не найдено. Попробуй 'мрамор', 'золото'...";
+            resultDiv.innerHTML = '';
+            
+            if (query.length < 2) {
+                resultDiv.innerHTML = "Введите хотя бы 2 символа...";
+                return;
+            }
+            
+            let found = false;
+            for (const [name, path] of Object.entries(searchIndex)) {
+                if (name.toLowerCase().includes(query)) {
+                    resultDiv.innerHTML += `<div class="search-item">
+                        Найдено: <a href="${path}">${name}</a>
+                    </div>`;
+                    found = true;
+                }
+            }
+            
+            if (!found) {
+                resultDiv.innerHTML = "Ничего не найдено. Попробуйте другой запрос.";
             }
         }
+        
+        // Автопоиск при вводе (опционально)
+        function setupAutoSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', search);
+        }
+        
+        // Включаем автопоиск при загрузке страницы
+        window.onload = setupAutoSearch;
     </script>
 </head>
 <body>
@@ -120,3 +149,8 @@
     <a href="index.html">назад на главную</a>
 </body>
 </html>
+
+
+
+
+
